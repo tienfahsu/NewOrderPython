@@ -1,0 +1,14 @@
+[project]
+name = "team-order-worker"
+version = "0.1.0"
+description = "辦公室訂餐/下午茶訂購系統 (Cloudflare Workers Python + D1)"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx",
+]
+
+[dependency-groups]
+dev = [
+    "workers-py",
+    "workers-runtime-sdk",
+]

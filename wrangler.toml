@@ -1,0 +1,17 @@
+name = "team-order"
+main = "src/entry.py"
+compatibility_date = "2026-08-14"
+compatibility_flags = ["python_workers"]
+
+# ------------------------------------------------------------------
+# 需要先在 Cloudflare 建立 D1 資料庫：
+#   npx wrangler d1 create team-order-db
+# 再把回傳的 database_id 填到下面
+# ------------------------------------------------------------------
+[[d1_databases]]
+binding = "DB"
+database_name = "team-order-db"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+[vars]
+APP_NAME = "辦公室訂餐/下午茶系統"

@@ -1,0 +1,30 @@
+# 複製成 .dev.vars 並填入本機開發用的密鑰（.dev.vars 不會被上傳）
+# 正式部署請改用 Cloudflare Dashboard 的 Workers Settings > Variables 或
+#   npx wrangler secret put SESSION_SECRET
+
+# 必填：session 簽章密鑰（請用長隨機字串）
+SESSION_SECRET=change-me-to-a-long-random-string
+
+# 選填：開放註冊的邀請碼（不設則只有管理員能開帳號）
+REGISTER_TOKEN=
+
+# 選填：催款 Email（Resend）
+RESEND_API_KEY=
+DEFAULT_FROM_EMAIL=team-order@example.com
+
+# 選填：LINE Messaging API（催款 LINE 通知）
+# 到 LINE Developers 建立 Messaging API 頻道。填入以下任一組：
+#   A. LINE_CHANNEL_ACCESS_TOKEN（長期權杖，LINE Developers 後台取得）
+#   B. LINE_CHANNEL_ID + LINE_CHANNEL_SECRET（系統會自動用 OAuth 換發權杖）
+LINE_CHANNEL_ID=
+LINE_CHANNEL_SECRET=
+LINE_CHANNEL_ACCESS_TOKEN= 
+
+# 選填：LINE Pay 商家設定（不設則只能用內部收款狀態追蹤 + 現金/轉帳）
+LINE_PAY_CHANNEL_ID=
+LINE_PAY_CHANNEL_SECRET=
+
+# 選填：首次啟動時自動建立的系統管理員
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=admin12345
+ADMIN_NAME=系統管理員
