@@ -96,6 +96,10 @@ npx wrangler d1 execute team-order-db --remote --file=migrations/schema.sql
 npm run deploy   # 等同 npx wrangler deploy
 ```
 
+靜態檔（`src/static/` 的 HTML/CSS/JS）透過 **Static Assets binding** 由 Cloudflare
+edge 直接伺服（`wrangler.toml` 的 `[assets]`）；`/api/*` 請求才進 Worker。
+因此 Python Worker 不需要（也無法）直接讀取檔案系統。
+
 完成後即可用 `https://你的名稱.workers.dev` 開站。
 第一個註冊的使用者（或 `ADMIN_EMAIL` 指定的帳號）會是管理員。
 

@@ -3,6 +3,10 @@ main = "src/entry.py"
 compatibility_date = "2026-08-14"
 compatibility_flags = ["python_workers"]
 
+[assets]
+directory = "./src/static"
+binding = "ASSETS"
+
 # ------------------------------------------------------------------
 # 需要先在 Cloudflare 建立 D1 資料庫：
 #   npx wrangler d1 create team-order-db
