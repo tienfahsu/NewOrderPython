@@ -11,7 +11,7 @@ compatibility_flags = ["python_workers"]
 [[d1_databases]]
 binding = "DB"
 database_name = "team-order-db"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "08358978-9af3-44f7-b549-78eb652e53b9"
 
 [vars]
 APP_NAME = "辦公室訂餐/下午茶系統"
