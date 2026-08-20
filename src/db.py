@@ -116,6 +116,26 @@ SCHEMA_MIGRATIONS = [
 ]
 
 
+def _strip_sql_comments(sql):
+    """移除 SQL 中的 -- 行尾註解（D1 的 exec 不支援註解）。"""
+    lines = []
+    for line in sql.splitlines():
+        if "--" in line:
+            line = line.split("--", 1)[0].rstrip()
+        lines.append(line)
+    return "\n".join(lines)
+
+
+def _split_sql_statements(sql):
+    """把多語句 SQL 依分號拆開，回傳非空、去除前後空白的語句串列。"""
+    out = []
+    for part in sql.split(";"):
+        part = part.strip()
+        if part:
+            out.append(part)
+    return out
+
+
 class DB:
     """包裝 D1 binding，提供方便的 async 查詢介面。"""
 
@@ -129,7 +149,11 @@ class DB:
         return stmt
 
     async def init_schema(self):
-        await self._b.exec(SCHEMA_SQL)
+        # D1 的 exec() 不支援 SQL 註解，且對整批多語句較敏感：
+        # 先剝除 -- 行尾註解，再逐句執行。
+        sql_no_comments = _strip_sql_comments(SCHEMA_SQL)
+        for stmt in _split_sql_statements(sql_no_comments):
+            await self._b.exec(stmt)
         for sql in SCHEMA_MIGRATIONS:
             try:
                 await self._b.exec(sql)
