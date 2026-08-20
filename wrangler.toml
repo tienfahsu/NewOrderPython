@@ -19,3 +19,18 @@ database_id = "08358978-9af3-44f7-b549-78eb652e53b9"
 
 [vars]
 APP_NAME = "辦公室訂餐/下午茶系統"
+SESSION_SECRET = "change-me-to-a-long-random-string"
+REGISTER_TOKEN = ""
+DEFAULT_FROM_EMAIL = "team-order@example.com"
+ADMIN_EMAIL = "admin@example.com"
+ADMIN_PASSWORD = "admin12345"
+ADMIN_NAME = "系統管理員"
+
+# LINE Messaging API（催款 LINE 通知；未填 ACCESS_TOKEN 時用 ID/SECRET 換發）
+LINE_CHANNEL_ID = ""
+LINE_CHANNEL_SECRET = ""
+LINE_CHANNEL_ACCESS_TOKEN = ""
+
+# LINE Pay 商家設定（未設定則只能用內部收款狀態追蹤）
+LINE_PAY_CHANNEL_ID = ""
+LINE_PAY_CHANNEL_SECRET = ""
