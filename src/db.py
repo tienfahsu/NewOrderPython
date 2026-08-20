@@ -149,14 +149,12 @@ class DB:
         return stmt
 
     async def init_schema(self):
-        # D1 的 exec() 不支援 SQL 註解，且對整批多語句較敏感：
-        # 先剝除 -- 行尾註解，再逐句執行。
-        sql_no_comments = _strip_sql_comments(SCHEMA_SQL)
-        for stmt in _split_sql_statements(sql_no_comments):
-            await self._b.exec(stmt)
+        # D1 的 exec() 對批次/註解解析不穩定，改用 prepare().run() 逐句執行。
+        for stmt in _split_sql_statements(_strip_sql_comments(SCHEMA_SQL)):
+            await self.run(stmt)
         for sql in SCHEMA_MIGRATIONS:
             try:
-                await self._b.exec(sql)
+                await self.run(sql)
             except Exception:
                 pass
 
